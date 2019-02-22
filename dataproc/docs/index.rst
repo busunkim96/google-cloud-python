@@ -1,5 +1,4 @@
-.. include:: /../dataproc/README.rst
-
+.. include:: README.rst
 
 API Reference
 -------------
@@ -19,5 +18,5 @@ For a list of all ``google-cloud-dataproc`` releases:
 
 .. toctree::
    :maxdepth: 2
-
+   
    changelog
