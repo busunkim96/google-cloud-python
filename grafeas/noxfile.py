@@ -34,11 +34,11 @@ def lint(session):
     session.run(
         "black",
         "--check",
-        "grafeas_v1",
+        "grafeas",
         "tests",
         "docs",
     )
-    session.run("flake8", "grafeas_v1", "tests")
+    session.run("flake8", "grafeas", "tests")
 
 
 @nox.session(python="3.6")
@@ -54,7 +54,7 @@ def blacken(session):
     session.install("black")
     session.run(
         "black",
-        "grafeas_v1",
+        "grafeas",
         "tests",
         "docs",
     )
@@ -78,7 +78,7 @@ def default(session):
     session.run(
         "py.test",
         "--quiet",
-        "--cov=grafeas_v1.cloud",
+        "--cov=grafeas.cloud",
         "--cov=tests.unit",
         "--cov-append",
         "--cov-config=.coveragerc",

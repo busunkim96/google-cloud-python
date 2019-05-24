@@ -34,11 +34,11 @@ readme_filename = os.path.join(package_root, "README.rst")
 with io.open(readme_filename, encoding="utf-8") as readme_file:
     readme = readme_file.read()
 
-# packages = [
-#     package for package in setuptools.find_packages() if package.startswith("google")
-# ]
+packages = [
+     package for package in setuptools.find_packages() if package.startswith("grafeas")
+]
 
-# namespaces = ["google"]
+namespaces = ["grafeas"]
 # if "google.cloud" in packages:
 #     namespaces.append("google.cloud")
 

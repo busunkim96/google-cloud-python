@@ -35,9 +35,10 @@ library = gapic.py_library(
 
 #excludes = ["README.rst", "nox.py", "setup.py", "docs/index.rst"]
 s.move(library / "docs", excludes=None)
-s.move(library / "grafeas_v1", excludes=None)
-s.move(library / "google/cloud/grafeas_v1/proto", "grafeas_v1/proto", excludes=None)
+s.move(library / "grafeas_v1", "grafeas", excludes=None)
+s.move(library / "google/cloud/grafeas_v1/proto", "grafeas/grafeas_v1/proto", excludes=None)
 s.move(library / "tests", excludes=None)
+s.move(library / "README.rst")
 
 # ----------------------------------------------------------------------------
 # Add templated files
