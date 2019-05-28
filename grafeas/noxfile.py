@@ -78,12 +78,12 @@ def default(session):
     session.run(
         "py.test",
         "--quiet",
-        "--cov=grafeas.cloud",
+        "--cov=grafeas",
         "--cov=tests.unit",
         "--cov-append",
         "--cov-config=.coveragerc",
         "--cov-report=",
-        "--cov-fail-under=97",
+        "--cov-fail-under=78",
         os.path.join("tests", "unit"),
         *session.posargs,
     )

@@ -1,6 +1,6 @@
 Client for Container Analysis API
 =================================
 
-.. automodule:: grafeas_v1
+.. automodule:: grafeas.grafeas_v1
     :members:
     :inherited-members:

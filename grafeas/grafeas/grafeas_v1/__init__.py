@@ -14,11 +14,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-try:
-    import pkg_resources
 
-    pkg_resources.declare_namespace(__name__)
-except ImportError:
-    import pkgutil
+from __future__ import absolute_import
 
-    __path__ = pkgutil.extend_path(__path__, __name__)
+from grafeas.grafeas_v1 import types
+from grafeas.grafeas_v1.gapic import enums
+from grafeas.grafeas_v1.gapic import grafeas_client
+
+
+class GrafeasClient(grafeas_client.GrafeasClient):
+    __doc__ = grafeas_client.GrafeasClient.__doc__
+    enums = enums
+
+
+__all__ = (
+    'enums',
+    'types',
+    'GrafeasClient',
+)

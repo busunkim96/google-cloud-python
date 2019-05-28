@@ -25,20 +25,26 @@ from google.protobuf import empty_pb2
 from google.protobuf import field_mask_pb2
 from google.protobuf import timestamp_pb2
 from google.rpc import status_pb2
-from grafeas.v1 import attestation_pb2
-from grafeas.v1 import build_pb2
-from grafeas.v1 import common_pb2
-from grafeas.v1 import cvss_pb2
-from grafeas.v1 import deployment_pb2
-from grafeas.v1 import discovery_pb2
-from grafeas.v1 import grafeas_pb2
-from grafeas.v1 import image_pb2
-from grafeas.v1 import package_pb2
-from grafeas.v1 import provenance_pb2
-from grafeas.v1 import vulnerability_pb2
+from grafeas.grafeas_v1.proto import attestation_pb2
+from grafeas.grafeas_v1.proto import build_pb2
+from grafeas.grafeas_v1.proto import common_pb2
+from grafeas.grafeas_v1.proto import cvss_pb2
+from grafeas.grafeas_v1.proto import deployment_pb2
+from grafeas.grafeas_v1.proto import discovery_pb2
+from grafeas.grafeas_v1.proto import grafeas_pb2
+from grafeas.grafeas_v1.proto import image_pb2
+from grafeas.grafeas_v1.proto import package_pb2
+from grafeas.grafeas_v1.proto import provenance_pb2
+from grafeas.grafeas_v1.proto import vulnerability_pb2
 
 
-_shared_modules = [any_pb2, empty_pb2, field_mask_pb2, timestamp_pb2, status_pb2]
+_shared_modules = [
+    any_pb2,
+    empty_pb2,
+    field_mask_pb2,
+    timestamp_pb2,
+    status_pb2,
+]
 
 _local_modules = [
     attestation_pb2,
@@ -61,10 +67,10 @@ for module in _shared_modules:  # pragma: NO COVER
         setattr(sys.modules[__name__], name, message)
         names.append(name)
 for module in _local_modules:
-    for name, message in get_messages(module).items():
-        message.__module__ = "grafeas_v1.types"
-        setattr(sys.modules[__name__], name, message)
-        names.append(name)
+      for name, message in get_messages(module).items():
+          message.__module__ = 'grafeas_v1.types'
+          setattr(sys.modules[__name__], name, message)
+          names.append(name)
 
 
 __all__ = tuple(sorted(names))
