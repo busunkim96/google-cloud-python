@@ -32,11 +32,11 @@ import grpc
 
 from google.protobuf import empty_pb2
 from google.protobuf import field_mask_pb2
-from grafeas.grafeas_v1.proto import grafeas_pb2
-from grafeas.grafeas_v1.proto import grafeas_pb2_grpc
 from grafeas.grafeas_v1.gapic import enums
 from grafeas.grafeas_v1.gapic import grafeas_client_config
 from grafeas.grafeas_v1.gapic.transports import grafeas_grpc_transport
+from grafeas.grafeas_v1.proto import grafeas_pb2
+from grafeas.grafeas_v1.proto import grafeas_pb2_grpc
 
 
 
@@ -47,7 +47,7 @@ _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution(
 
 class GrafeasClient(object):
     """
-    `Grafeas <grafeas.io>`__ API.
+    `Grafeas <https://grafeas.io>`__ API.
 
     Retrieves analysis results of Cloud components such as Docker container
     images.
@@ -220,7 +220,7 @@ class GrafeasClient(object):
         Gets the specified occurrence.
 
         Example:
-            >>> import grafeas.grafeas_v1
+            >>> from grafeas import grafeas_v1
             >>>
             >>> client = grafeas_v1.GrafeasClient()
             >>>
@@ -241,7 +241,7 @@ class GrafeasClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~grafeas_v1.types.Occurrence` instance.
+            A :class:`~grafeas.grafeas_v1.types.Occurrence` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -287,7 +287,7 @@ class GrafeasClient(object):
         Lists occurrences for the specified project.
 
         Example:
-            >>> import grafeas.grafeas_v1
+            >>> from grafeas import grafeas_v1
             >>>
             >>> client = grafeas_v1.GrafeasClient()
             >>>
@@ -327,7 +327,7 @@ class GrafeasClient(object):
 
         Returns:
             A :class:`~google.gax.PageIterator` instance. By default, this
-            is an iterable of :class:`~grafeas_v1.types.Occurrence` instances.
+            is an iterable of :class:`~grafeas.grafeas_v1.types.Occurrence` instances.
             This object can also be configured to iterate over the pages
             of the response through the `options` parameter.
 
@@ -385,7 +385,7 @@ class GrafeasClient(object):
         resource.
 
         Example:
-            >>> import grafeas.grafeas_v1
+            >>> from grafeas import grafeas_v1
             >>>
             >>> client = grafeas_v1.GrafeasClient()
             >>>
@@ -448,7 +448,7 @@ class GrafeasClient(object):
         Creates a new occurrence.
 
         Example:
-            >>> import grafeas.grafeas_v1
+            >>> from grafeas import grafeas_v1
             >>>
             >>> client = grafeas_v1.GrafeasClient()
             >>>
@@ -462,10 +462,10 @@ class GrafeasClient(object):
         Args:
             parent (str): The name of the project in the form of ``projects/[PROJECT_ID]``, under
                 which the occurrence is to be created.
-            occurrence (Union[dict, ~grafeas_v1.types.Occurrence]): The occurrence to create.
+            occurrence (Union[dict, ~grafeas.grafeas_v1.types.Occurrence]): The occurrence to create.
 
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~grafeas_v1.types.Occurrence`
+                message :class:`~grafeas.grafeas_v1.types.Occurrence`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -476,7 +476,7 @@ class GrafeasClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~grafeas_v1.types.Occurrence` instance.
+            A :class:`~grafeas.grafeas_v1.types.Occurrence` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -522,7 +522,7 @@ class GrafeasClient(object):
         Creates new occurrences in batch.
 
         Example:
-            >>> import grafeas.grafeas_v1
+            >>> from grafeas import grafeas_v1
             >>>
             >>> client = grafeas_v1.GrafeasClient()
             >>>
@@ -536,10 +536,10 @@ class GrafeasClient(object):
         Args:
             parent (str): The name of the project in the form of ``projects/[PROJECT_ID]``, under
                 which the occurrences are to be created.
-            occurrences (list[Union[dict, ~grafeas_v1.types.Occurrence]]): The occurrences to create. Max allowed length is 1000.
+            occurrences (list[Union[dict, ~grafeas.grafeas_v1.types.Occurrence]]): The occurrences to create. Max allowed length is 1000.
 
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~grafeas_v1.types.Occurrence`
+                message :class:`~grafeas.grafeas_v1.types.Occurrence`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -550,7 +550,7 @@ class GrafeasClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~grafeas_v1.types.BatchCreateOccurrencesResponse` instance.
+            A :class:`~grafeas.grafeas_v1.types.BatchCreateOccurrencesResponse` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -597,7 +597,7 @@ class GrafeasClient(object):
         Updates the specified occurrence.
 
         Example:
-            >>> import grafeas.grafeas_v1
+            >>> from grafeas import grafeas_v1
             >>>
             >>> client = grafeas_v1.GrafeasClient()
             >>>
@@ -611,14 +611,14 @@ class GrafeasClient(object):
         Args:
             name (str): The name of the occurrence in the form of
                 ``projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]``.
-            occurrence (Union[dict, ~grafeas_v1.types.Occurrence]): The updated occurrence.
+            occurrence (Union[dict, ~grafeas.grafeas_v1.types.Occurrence]): The updated occurrence.
 
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~grafeas_v1.types.Occurrence`
-            update_mask (Union[dict, ~grafeas_v1.types.FieldMask]): The fields to update.
+                message :class:`~grafeas.grafeas_v1.types.Occurrence`
+            update_mask (Union[dict, ~grafeas.grafeas_v1.types.FieldMask]): The fields to update.
 
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~grafeas_v1.types.FieldMask`
+                message :class:`~grafeas.grafeas_v1.types.FieldMask`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -629,7 +629,7 @@ class GrafeasClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~grafeas_v1.types.Occurrence` instance.
+            A :class:`~grafeas.grafeas_v1.types.Occurrence` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -676,7 +676,7 @@ class GrafeasClient(object):
         use this method to get a note that belongs to a provider project.
 
         Example:
-            >>> import grafeas.grafeas_v1
+            >>> from grafeas import grafeas_v1
             >>>
             >>> client = grafeas_v1.GrafeasClient()
             >>>
@@ -697,7 +697,7 @@ class GrafeasClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~grafeas_v1.types.Note` instance.
+            A :class:`~grafeas.grafeas_v1.types.Note` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -741,7 +741,7 @@ class GrafeasClient(object):
         Gets the specified note.
 
         Example:
-            >>> import grafeas.grafeas_v1
+            >>> from grafeas import grafeas_v1
             >>>
             >>> client = grafeas_v1.GrafeasClient()
             >>>
@@ -762,7 +762,7 @@ class GrafeasClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~grafeas_v1.types.Note` instance.
+            A :class:`~grafeas.grafeas_v1.types.Note` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -808,7 +808,7 @@ class GrafeasClient(object):
         Lists notes for the specified project.
 
         Example:
-            >>> import grafeas.grafeas_v1
+            >>> from grafeas import grafeas_v1
             >>>
             >>> client = grafeas_v1.GrafeasClient()
             >>>
@@ -848,7 +848,7 @@ class GrafeasClient(object):
 
         Returns:
             A :class:`~google.gax.PageIterator` instance. By default, this
-            is an iterable of :class:`~grafeas_v1.types.Note` instances.
+            is an iterable of :class:`~grafeas.grafeas_v1.types.Note` instances.
             This object can also be configured to iterate over the pages
             of the response through the `options` parameter.
 
@@ -904,7 +904,7 @@ class GrafeasClient(object):
         Deletes the specified note.
 
         Example:
-            >>> import grafeas.grafeas_v1
+            >>> from grafeas import grafeas_v1
             >>>
             >>> client = grafeas_v1.GrafeasClient()
             >>>
@@ -968,7 +968,7 @@ class GrafeasClient(object):
         Creates a new note.
 
         Example:
-            >>> import grafeas.grafeas_v1
+            >>> from grafeas import grafeas_v1
             >>>
             >>> client = grafeas_v1.GrafeasClient()
             >>>
@@ -986,10 +986,10 @@ class GrafeasClient(object):
             parent (str): The name of the project in the form of ``projects/[PROJECT_ID]``, under
                 which the note is to be created.
             note_id (str): The ID to use for this note.
-            note (Union[dict, ~grafeas_v1.types.Note]): The note to create.
+            note (Union[dict, ~grafeas.grafeas_v1.types.Note]): The note to create.
 
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~grafeas_v1.types.Note`
+                message :class:`~grafeas.grafeas_v1.types.Note`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -1000,7 +1000,7 @@ class GrafeasClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~grafeas_v1.types.Note` instance.
+            A :class:`~grafeas.grafeas_v1.types.Note` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -1047,7 +1047,7 @@ class GrafeasClient(object):
         Creates new notes in batch.
 
         Example:
-            >>> import grafeas.grafeas_v1
+            >>> from grafeas import grafeas_v1
             >>>
             >>> client = grafeas_v1.GrafeasClient()
             >>>
@@ -1061,10 +1061,10 @@ class GrafeasClient(object):
         Args:
             parent (str): The name of the project in the form of ``projects/[PROJECT_ID]``, under
                 which the notes are to be created.
-            notes (dict[str -> Union[dict, ~grafeas_v1.types.Note]]): The notes to create. Max allowed length is 1000.
+            notes (dict[str -> Union[dict, ~grafeas.grafeas_v1.types.Note]]): The notes to create. Max allowed length is 1000.
 
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~grafeas_v1.types.Note`
+                message :class:`~grafeas.grafeas_v1.types.Note`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -1075,7 +1075,7 @@ class GrafeasClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~grafeas_v1.types.BatchCreateNotesResponse` instance.
+            A :class:`~grafeas.grafeas_v1.types.BatchCreateNotesResponse` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -1122,7 +1122,7 @@ class GrafeasClient(object):
         Updates the specified note.
 
         Example:
-            >>> import grafeas.grafeas_v1
+            >>> from grafeas import grafeas_v1
             >>>
             >>> client = grafeas_v1.GrafeasClient()
             >>>
@@ -1136,14 +1136,14 @@ class GrafeasClient(object):
         Args:
             name (str): The name of the note in the form of
                 ``projects/[PROVIDER_ID]/notes/[NOTE_ID]``.
-            note (Union[dict, ~grafeas_v1.types.Note]): The updated note.
+            note (Union[dict, ~grafeas.grafeas_v1.types.Note]): The updated note.
 
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~grafeas_v1.types.Note`
-            update_mask (Union[dict, ~grafeas_v1.types.FieldMask]): The fields to update.
+                message :class:`~grafeas.grafeas_v1.types.Note`
+            update_mask (Union[dict, ~grafeas.grafeas_v1.types.FieldMask]): The fields to update.
 
                 If a dict is provided, it must be of the same form as the protobuf
-                message :class:`~grafeas_v1.types.FieldMask`
+                message :class:`~grafeas.grafeas_v1.types.FieldMask`
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will not
                 be retried.
@@ -1154,7 +1154,7 @@ class GrafeasClient(object):
                 that is provided to the method.
 
         Returns:
-            A :class:`~grafeas_v1.types.Note` instance.
+            A :class:`~grafeas.grafeas_v1.types.Note` instance.
 
         Raises:
             google.api_core.exceptions.GoogleAPICallError: If the request
@@ -1204,7 +1204,7 @@ class GrafeasClient(object):
         specified note.
 
         Example:
-            >>> import grafeas.grafeas_v1
+            >>> from grafeas import grafeas_v1
             >>>
             >>> client = grafeas_v1.GrafeasClient()
             >>>
@@ -1244,7 +1244,7 @@ class GrafeasClient(object):
 
         Returns:
             A :class:`~google.gax.PageIterator` instance. By default, this
-            is an iterable of :class:`~grafeas_v1.types.Occurrence` instances.
+            is an iterable of :class:`~grafeas.grafeas_v1.types.Occurrence` instances.
             This object can also be configured to iterate over the pages
             of the response through the `options` parameter.
 

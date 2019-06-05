@@ -20,8 +20,8 @@ import mock
 import pytest
 
 from google.protobuf import empty_pb2
+from grafeas import grafeas_v1
 from grafeas.grafeas_v1.proto import grafeas_pb2
-import grafeas.grafeas_v1
 
 
 

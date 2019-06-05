@@ -6,7 +6,7 @@ from grafeas.grafeas_v1.proto import grafeas_pb2 as grafeas__v1_dot_proto_dot_gr
 
 
 class GrafeasStub(object):
-  """[Grafeas](grafeas.io) API.
+  """[Grafeas](https://grafeas.io) API.
 
   Retrieves analysis results of Cloud components such as Docker container
   images.
@@ -101,7 +101,7 @@ class GrafeasStub(object):
 
 
 class GrafeasServicer(object):
-  """[Grafeas](grafeas.io) API.
+  """[Grafeas](https://grafeas.io) API.
 
   Retrieves analysis results of Cloud components such as Docker container
   images.

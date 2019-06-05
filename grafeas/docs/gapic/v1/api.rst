@@ -1,4 +1,4 @@
-Client for Container Analysis API
+Client for Grafeas API
 =================================
 
 .. automodule:: grafeas.grafeas_v1
