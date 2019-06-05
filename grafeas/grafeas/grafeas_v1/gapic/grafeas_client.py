@@ -64,9 +64,6 @@ class GrafeasClient(object):
     for each image with the vulnerability referring to that note.
     """
 
-    SERVICE_ADDRESS = 'containeranalysis.googleapis.com:443'
-    """The default address of the service."""
-
     # The name of the interface for this client. This is the key used to
     # find the method configuration in the client_config dictionary.
     _INTERFACE_NAME = 'grafeas.v1.Grafeas'
@@ -120,30 +117,17 @@ class GrafeasClient(object):
             project=project,
         )
 
-    def __init__(self, transport=None, channel=None, credentials=None,
-            client_config=None, client_info=None):
+    def __init__(self, transport, client_config=None, client_info=None):
         """Constructor.
 
         Args:
-            transport (Union[~.GrafeasGrpcTransport,
-                    Callable[[~.Credentials, type], ~.GrafeasGrpcTransport]): A transport
+            transport (~.GrafeasGrpcTransport): A transport
                 instance, responsible for actually making the API calls.
                 The default transport uses the gRPC protocol.
                 This argument may also be a callable which returns a
                 transport instance. Callables will be sent the credentials
                 as the first argument and the default transport class as
                 the second argument.
-            channel (grpc.Channel): DEPRECATED. A ``Channel`` instance
-                through which to make calls. This argument is mutually exclusive
-                with ``credentials``; providing both will raise an exception.
-            credentials (google.auth.credentials.Credentials): The
-                authorization credentials to attach to requests. These
-                credentials identify this application to the service. If none
-                are specified, the client will attempt to ascertain the
-                credentials from the environment.
-                This argument is mutually exclusive with providing a
-                transport instance to ``transport``; doing so will raise
-                an exception.
             client_config (dict): DEPRECATED. A dictionary of call options for
                 each method. If not specified, the default configuration is used.
             client_info (google.api_core.gapic_v1.client_info.ClientInfo):
@@ -159,33 +143,10 @@ class GrafeasClient(object):
         else:
             client_config = grafeas_client_config.config
 
-        if channel:
-            warnings.warn('The `channel` argument is deprecated; use '
-                          '`transport` instead.',
-                          PendingDeprecationWarning, stacklevel=2)
-
         # Instantiate the transport.
         # The transport is responsible for handling serialization and
         # deserialization and actually sending data to the service.
-        if transport:
-            if callable(transport):
-                self.transport = transport(
-                    credentials=credentials,
-                    default_class=grafeas_grpc_transport.GrafeasGrpcTransport,
-                )
-            else:
-                if credentials:
-                    raise ValueError(
-                        'Received both a transport instance and '
-                        'credentials; these are mutually exclusive.'
-                    )
-                self.transport = transport
-        else:
-            self.transport = grafeas_grpc_transport.GrafeasGrpcTransport(
-                address=self.SERVICE_ADDRESS,
-                channel=channel,
-                credentials=credentials,
-            )
+        self.transport = transport
 
         if client_info is None:
             client_info = google.api_core.gapic_v1.client_info.ClientInfo(
@@ -221,8 +182,12 @@ class GrafeasClient(object):
 
         Example:
             >>> from grafeas import grafeas_v1
-            >>>
-            >>> client = grafeas_v1.GrafeasClient()
+            >>> from grafeas.grafeas_v1.gapic.transports import grafeas_grpc_transport
+            >>> 
+            >>> address = "containeranalysis.googleapis.com:443"
+            >>> scopes = ("https://www.googleapis.com/auth/cloud-platform")
+            >>> transport = grafeas_grpc_transport.GrafeasGrpcTransport(address, scopes)
+            >>> client = grafeas_v1.GrafeasClient(transport)
             >>>
             >>> name = client.occurrence_path('[PROJECT]', '[OCCURRENCE]')
             >>>
@@ -288,8 +253,12 @@ class GrafeasClient(object):
 
         Example:
             >>> from grafeas import grafeas_v1
-            >>>
-            >>> client = grafeas_v1.GrafeasClient()
+            >>> from grafeas.grafeas_v1.gapic.transports import grafeas_grpc_transport
+            >>> 
+            >>> address = "containeranalysis.googleapis.com:443"
+            >>> scopes = ("https://www.googleapis.com/auth/cloud-platform")
+            >>> transport = grafeas_grpc_transport.GrafeasGrpcTransport(address, scopes)
+            >>> client = grafeas_v1.GrafeasClient(transport)
             >>>
             >>> parent = client.project_path('[PROJECT]')
             >>>
@@ -386,8 +355,12 @@ class GrafeasClient(object):
 
         Example:
             >>> from grafeas import grafeas_v1
-            >>>
-            >>> client = grafeas_v1.GrafeasClient()
+            >>> from grafeas.grafeas_v1.gapic.transports import grafeas_grpc_transport
+            >>> 
+            >>> address = "containeranalysis.googleapis.com:443"
+            >>> scopes = ("https://www.googleapis.com/auth/cloud-platform")
+            >>> transport = grafeas_grpc_transport.GrafeasGrpcTransport(address, scopes)
+            >>> client = grafeas_v1.GrafeasClient(transport)
             >>>
             >>> name = client.occurrence_path('[PROJECT]', '[OCCURRENCE]')
             >>>
@@ -449,8 +422,12 @@ class GrafeasClient(object):
 
         Example:
             >>> from grafeas import grafeas_v1
-            >>>
-            >>> client = grafeas_v1.GrafeasClient()
+            >>> from grafeas.grafeas_v1.gapic.transports import grafeas_grpc_transport
+            >>> 
+            >>> address = "containeranalysis.googleapis.com:443"
+            >>> scopes = ("https://www.googleapis.com/auth/cloud-platform")
+            >>> transport = grafeas_grpc_transport.GrafeasGrpcTransport(address, scopes)
+            >>> client = grafeas_v1.GrafeasClient(transport)
             >>>
             >>> parent = client.project_path('[PROJECT]')
             >>>
@@ -523,8 +500,12 @@ class GrafeasClient(object):
 
         Example:
             >>> from grafeas import grafeas_v1
-            >>>
-            >>> client = grafeas_v1.GrafeasClient()
+            >>> from grafeas.grafeas_v1.gapic.transports import grafeas_grpc_transport
+            >>> 
+            >>> address = "containeranalysis.googleapis.com:443"
+            >>> scopes = ("https://www.googleapis.com/auth/cloud-platform")
+            >>> transport = grafeas_grpc_transport.GrafeasGrpcTransport(address, scopes)
+            >>> client = grafeas_v1.GrafeasClient(transport)
             >>>
             >>> parent = client.project_path('[PROJECT]')
             >>>
@@ -598,8 +579,12 @@ class GrafeasClient(object):
 
         Example:
             >>> from grafeas import grafeas_v1
-            >>>
-            >>> client = grafeas_v1.GrafeasClient()
+            >>> from grafeas.grafeas_v1.gapic.transports import grafeas_grpc_transport
+            >>> 
+            >>> address = "containeranalysis.googleapis.com:443"
+            >>> scopes = ("https://www.googleapis.com/auth/cloud-platform")
+            >>> transport = grafeas_grpc_transport.GrafeasGrpcTransport(address, scopes)
+            >>> client = grafeas_v1.GrafeasClient(transport)
             >>>
             >>> name = client.occurrence_path('[PROJECT]', '[OCCURRENCE]')
             >>>
@@ -677,8 +662,12 @@ class GrafeasClient(object):
 
         Example:
             >>> from grafeas import grafeas_v1
-            >>>
-            >>> client = grafeas_v1.GrafeasClient()
+            >>> from grafeas.grafeas_v1.gapic.transports import grafeas_grpc_transport
+            >>> 
+            >>> address = "containeranalysis.googleapis.com:443"
+            >>> scopes = ("https://www.googleapis.com/auth/cloud-platform")
+            >>> transport = grafeas_grpc_transport.GrafeasGrpcTransport(address, scopes)
+            >>> client = grafeas_v1.GrafeasClient(transport)
             >>>
             >>> name = client.occurrence_path('[PROJECT]', '[OCCURRENCE]')
             >>>
@@ -742,8 +731,12 @@ class GrafeasClient(object):
 
         Example:
             >>> from grafeas import grafeas_v1
-            >>>
-            >>> client = grafeas_v1.GrafeasClient()
+            >>> from grafeas.grafeas_v1.gapic.transports import grafeas_grpc_transport
+            >>> 
+            >>> address = "containeranalysis.googleapis.com:443"
+            >>> scopes = ("https://www.googleapis.com/auth/cloud-platform")
+            >>> transport = grafeas_grpc_transport.GrafeasGrpcTransport(address, scopes)
+            >>> client = grafeas_v1.GrafeasClient(transport)
             >>>
             >>> name = client.note_path('[PROJECT]', '[NOTE]')
             >>>
@@ -809,8 +802,12 @@ class GrafeasClient(object):
 
         Example:
             >>> from grafeas import grafeas_v1
-            >>>
-            >>> client = grafeas_v1.GrafeasClient()
+            >>> from grafeas.grafeas_v1.gapic.transports import grafeas_grpc_transport
+            >>> 
+            >>> address = "containeranalysis.googleapis.com:443"
+            >>> scopes = ("https://www.googleapis.com/auth/cloud-platform")
+            >>> transport = grafeas_grpc_transport.GrafeasGrpcTransport(address, scopes)
+            >>> client = grafeas_v1.GrafeasClient(transport)
             >>>
             >>> parent = client.project_path('[PROJECT]')
             >>>
@@ -905,8 +902,12 @@ class GrafeasClient(object):
 
         Example:
             >>> from grafeas import grafeas_v1
-            >>>
-            >>> client = grafeas_v1.GrafeasClient()
+            >>> from grafeas.grafeas_v1.gapic.transports import grafeas_grpc_transport
+            >>> 
+            >>> address = "containeranalysis.googleapis.com:443"
+            >>> scopes = ("https://www.googleapis.com/auth/cloud-platform")
+            >>> transport = grafeas_grpc_transport.GrafeasGrpcTransport(address, scopes)
+            >>> client = grafeas_v1.GrafeasClient(transport)
             >>>
             >>> name = client.note_path('[PROJECT]', '[NOTE]')
             >>>
@@ -969,8 +970,12 @@ class GrafeasClient(object):
 
         Example:
             >>> from grafeas import grafeas_v1
-            >>>
-            >>> client = grafeas_v1.GrafeasClient()
+            >>> from grafeas.grafeas_v1.gapic.transports import grafeas_grpc_transport
+            >>> 
+            >>> address = "containeranalysis.googleapis.com:443"
+            >>> scopes = ("https://www.googleapis.com/auth/cloud-platform")
+            >>> transport = grafeas_grpc_transport.GrafeasGrpcTransport(address, scopes)
+            >>> client = grafeas_v1.GrafeasClient(transport)
             >>>
             >>> parent = client.project_path('[PROJECT]')
             >>>
@@ -1048,8 +1053,12 @@ class GrafeasClient(object):
 
         Example:
             >>> from grafeas import grafeas_v1
-            >>>
-            >>> client = grafeas_v1.GrafeasClient()
+            >>> from grafeas.grafeas_v1.gapic.transports import grafeas_grpc_transport
+            >>> 
+            >>> address = "containeranalysis.googleapis.com:443"
+            >>> scopes = ("https://www.googleapis.com/auth/cloud-platform")
+            >>> transport = grafeas_grpc_transport.GrafeasGrpcTransport(address, scopes)
+            >>> client = grafeas_v1.GrafeasClient(transport)
             >>>
             >>> parent = client.project_path('[PROJECT]')
             >>>
@@ -1123,8 +1132,12 @@ class GrafeasClient(object):
 
         Example:
             >>> from grafeas import grafeas_v1
-            >>>
-            >>> client = grafeas_v1.GrafeasClient()
+            >>> from grafeas.grafeas_v1.gapic.transports import grafeas_grpc_transport
+            >>> 
+            >>> address = "containeranalysis.googleapis.com:443"
+            >>> scopes = ("https://www.googleapis.com/auth/cloud-platform")
+            >>> transport = grafeas_grpc_transport.GrafeasGrpcTransport(address, scopes)
+            >>> client = grafeas_v1.GrafeasClient(transport)
             >>>
             >>> name = client.note_path('[PROJECT]', '[NOTE]')
             >>>
@@ -1205,8 +1218,12 @@ class GrafeasClient(object):
 
         Example:
             >>> from grafeas import grafeas_v1
-            >>>
-            >>> client = grafeas_v1.GrafeasClient()
+            >>> from grafeas.grafeas_v1.gapic.transports import grafeas_grpc_transport
+            >>> 
+            >>> address = "containeranalysis.googleapis.com:443"
+            >>> scopes = ("https://www.googleapis.com/auth/cloud-platform")
+            >>> transport = grafeas_grpc_transport.GrafeasGrpcTransport(address, scopes)
+            >>> client = grafeas_v1.GrafeasClient(transport)
             >>>
             >>> name = client.note_path('[PROJECT]', '[NOTE]')
             >>>

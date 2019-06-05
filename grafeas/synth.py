@@ -77,91 +77,13 @@ s.replace(
 s.replace("docs/**/v*/*.rst", "Container Analysis", "Grafeas")
 
 
-# # ----------------------------------------------------------------------------
-# # Remove google-specific portions of library
-# # ----------------------------------------------------------------------------
-# # Remove default endpoint (service address).
-# s.replace(
-#     "grafeas/**/grafeas_client.py",
-#     r"""    SERVICE_ADDRESS = 'containeranalysis\.googleapis\.com:443'
-#     \"\"\"The default address of the service\.\"\"\"""",
-#     "",
-# )
+# ----------------------------------------------------------------------------
+# TODO: Remove google-specific portions of library
+# ----------------------------------------------------------------------------
 
-# # Don't set a default service address in the transport
-# s.replace(
-#     "grafeas/**/grafeas_grpc_transport.py",
-#     """    def __init__\(self, channel=None, credentials=None,
-#                  address='containeranalysis.googleapis.com:443'\):""",
-#     "    def __init__(self, address, channel=None, credentials=None):",
-# )
-# s.replace(
-#     "grafeas/**/grafeas_grpc_transport.py",
-#     r"""    def create_channel\(
-#                 cls,
-#                 address='containeranalysis\.googleapis\.com:443',
-#                 credentials=None\):""",
-#     """    def create_channel(
-#                 cls,
-#                 address,
-#                 credentials=None):""",
-# )
-
-# # Make transport required, since we aren't providing default credentials
-# # or endpoint.
-# s.replace("grafeas/**/grafeas_client.py", "transport=None,", "transport,")
-# s.replace(
-#     "grafeas/**/grafeas_client.py",
-#     r"""        if transport:
-#             if callable\(transport\):
-#                 self\.transport = transport\(
-#                     credentials=credentials,
-#                     default_class=grafeas_grpc_transport.GrafeasGrpcTransport,
-#                 \)
-#             else:
-#                 if credentials:
-#                     raise ValueError\(
-#                         'Received both a transport instance and '
-#                         'credentials; these are mutually exclusive\.'
-#                     \)
-#                 self\.transport = transport
-#         else:
-#             self\.transport = grafeas_grpc_transport.GrafeasGrpcTransport\(
-#                 address=self\.SERVICE_ADDRESS,
-#                 channel=channel,
-#                 credentials=credentials,
-#             \)""",
-#     """        if callable(transport):
-#             self.transport = transport(
-#                 credentials=credentials,
-#                 default_class=grafeas_grpc_transport.GrafeasGrpcTransport,
-#             )
-#         else:
-#             if credentials:
-#                 raise ValueError(
-#                     "Received both a transport instance and "
-#                     "credentials; these are mutually exclusive."
-#                 )
-#             self.transport = transport""",
-# )
-
-
-
-# # Remove OAuth Scope from Transport
-# s.replace(
-#     "grafeas/**/grafeas_grpc_transport.py",
-#     """    # The scopes needed to make gRPC calls to all of the methods defined
-#     # in this service.
-#     _OAUTH_SCOPES = \(
-#         'https://www.googleapis.com/auth/cloud-platform',
-#     \)""",
-#     "    _OAUTH_SCOPES = ()",
-# )
-
-
-# # TODO: Fix client instanatiation in tests
-
-# # Fix snippets showing client initialization.
+# Remove default service address, default scopes, default credentials
+# Update tests
+# Update code snippets in docstrings showing client instantiation.
 
 # ----------------------------------------------------------------------------
 # Add templated files
@@ -169,4 +91,4 @@ s.replace("docs/**/v*/*.rst", "Container Analysis", "Grafeas")
 templated_files = common.py_library(unit_cov_level=78, cov_level=78)
 s.move(templated_files, excludes=["noxfile.py"])
 
-# s.shell.run(["nox", "-s", "blacken"], hide_output=False)
+s.shell.run(["nox", "-s", "blacken"], hide_output=False)
