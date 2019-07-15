@@ -33,9 +33,25 @@ export GOOGLE_APPLICATION_CREDENTIALS=${KOKORO_GFILE_DIR}/service-account.json
 # Setup project id.
 export PROJECT_ID=$(cat "${KOKORO_GFILE_DIR}/project-id.json")
 
+# Setup API Key for Videointelligence VPC SC tests
+gcloud kms decrypt \
+  --location=global \
+  --keyring=kokoro \
+  --key=kokoro-environment \
+  --ciphertext-file=${KOKORO_GFILE_DIR}/videointelligence_vpcsc_outside_perimeter_project_api_key.enc \
+  --plaintext-file=videointelligence_vpcsc_outside_perimeter_project_api_key.dec
+export VIDEOINTELLIGENCE_VPCSC_OUTSIDE_PERIMETER_PROJECT_API_KEY=$(cat videointelligence_vpcsc_outside_perimeter_project_api_key.dec)
+
+# GitHub token (this token has no scopes and is read-only)
+gcloud kms decrypt \
+  --location=global \
+  --keyring=kokoro \
+  --key=kokoro-environment \
+  --ciphertext-file=${KOKORO_GFILE_DIR}/diff_checker_github_key.enc \
+  --plaintext-file=diff_checker_github_key.dec
+export TARGET_PACKAGES_GITHUB_TOKEN=$(cat diff_checker_github_key.dec)
+
 # Find out if this package was modified.
-# Temporarily use Thea's fork of ci-diff-helper w/ Kokoro support.
-python3.6 -m pip install --quiet git+https://github.com/theacodes/ci-diff-helper.git
 python3.6 test_utils/scripts/get_target_packages_kokoro.py > ~/target_packages
 cat ~/target_packages
 

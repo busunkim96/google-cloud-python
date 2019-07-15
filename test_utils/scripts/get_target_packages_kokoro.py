@@ -54,8 +54,17 @@ _URL_TEMPLATE = (
 
 def get_changed_files_from_pr(pr):
     url = _URL_TEMPLATE.format(pr)
+    session = requests.Session()
+    token = os.environ.get("TARGET_PACKAGES_GITHUB_TOKEN")
+    self.session.headers.update(
+        {
+            "Accept": "application/vnd.github.v3+json",
+            "Authorization": f"Bearer {token}",
+        }
+    )
+
     while url is not None:
-        response = requests.get(url)
+        response = session.get(url)
         for info in response.json():
             yield info['filename']
         url = response.links.get('next', {}).get('url')
