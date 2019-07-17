@@ -33,6 +33,10 @@ export GOOGLE_APPLICATION_CREDENTIALS=${KOKORO_GFILE_DIR}/service-account.json
 # Setup project id.
 export PROJECT_ID=$(cat "${KOKORO_GFILE_DIR}/project-id.json")
 
+# Activate service account credentials (for gcloud)
+gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+gcloud config set project $PROJECT_ID
+
 # Setup API Key for Videointelligence VPC SC tests
 gcloud kms decrypt \
   --location=global \
@@ -52,13 +56,16 @@ gcloud kms decrypt \
 export TARGET_PACKAGES_GITHUB_TOKEN=$(cat diff_checker_github_key.dec)
 
 # Find out if this package was modified.
+# Temporarily use Thea's fork of ci-diff-helper w/ Kokoro support.
+python3.6 -m pip install --quiet git+https://github.com/theacodes/ci-diff-helper.git
 python3.6 test_utils/scripts/get_target_packages_kokoro.py > ~/target_packages
 cat ~/target_packages
 
-if [[ ! -n $(grep -x "$PACKAGE" ~/target_packages) ]]; then
-    echo "$PACKAGE was not modified, returning."
-    exit;
-fi
+# TODO: Uncomment so tests don't run.
+# if [[ ! -n $(grep -x "$PACKAGE" ~/target_packages) ]]; then
+#     echo "$PACKAGE was not modified, returning."
+#     exit;
+# fi
 
 cd "$PACKAGE"
 
