@@ -123,6 +123,7 @@ def system(session):
         "PROJECT_NUMBER": "570941833855",
         "GOOGLE_CLOUD_TESTS_VPCSC_OUTSIDE_IP": "10.1.1.1",
         "GOOGLE_CLOUD_TESTS_VPCSC_INSIDE_IP": "55.55.0.0",
+        "GOOGLE_CLOUD_TESTS_VPCSC_OUTSIDE_PERIMETER_PROJECT_API_KEY": os.environ.get("VIDEOINTELLIGENCE_VPCSC_OUTSIDE_PERIMETER_PROJECT_API_KEY", None)
     }
     # Run py.test against the system tests.
     if system_test_exists:
