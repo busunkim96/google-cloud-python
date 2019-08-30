@@ -14,7 +14,9 @@
 """Convenience wrapper for invoking APIs/factories w/ a project."""
 
 import os
+import warnings
 
+import google.api_core.client_options
 from google.cloud._helpers import _LocalStack
 from google.cloud._helpers import _determine_default_project as _base_default_project
 from google.cloud.client import ClientWithProject
@@ -228,6 +230,7 @@ class Client(ClientWithProject):
         namespace=None,
         credentials=None,
         client_info=_CLIENT_INFO,
+        client_options=None,
         _http=None,
         _use_grpc=None,
     ):
@@ -242,11 +245,21 @@ class Client(ClientWithProject):
             self._use_grpc = _USE_GRPC
         else:
             self._use_grpc = _use_grpc
+
         try:
             host = os.environ[GCD_HOST]
             self._base_url = "http://" + host
         except KeyError:
-            self._base_url = _DATASTORE_BASE_URL
+            if client_options:
+                if type(client_options) == dict:
+                    client_options = google.api_core.client_options.from_dict(
+                        client_options
+                    )
+                if client_options.api_endpoint:
+                    api_endpoint = client_options.api_endpoint
+                    self._base_url = "http://" + api_endpoint
+            else:
+                self._base_url = _DATASTORE_BASE_URL
 
     @staticmethod
     def _determine_default(project):
@@ -255,12 +268,17 @@ class Client(ClientWithProject):
 
     @property
     def base_url(self):
-        """Getter for API base URL."""
+        """Getter for API base URL.."""
         return self._base_url
 
     @base_url.setter
     def base_url(self, value):
-        """Setter for API base URL."""
+        """DEPRECATED. Setter for API base URL."""
+        warnings.warn(
+            "The `base_url` setter is deprecated; use " "`client_options.api_endpoint` instead.",
+            PendingDeprecationWarning,
+            stacklevel=2,
+        )
         self._base_url = value
 
     @property

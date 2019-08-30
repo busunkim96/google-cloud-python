@@ -128,6 +128,7 @@ class TestClient(unittest.TestCase):
         namespace=None,
         credentials=None,
         client_info=None,
+        client_options=None,
         _http=None,
         _use_grpc=None,
     ):
@@ -136,6 +137,7 @@ class TestClient(unittest.TestCase):
             namespace=namespace,
             credentials=credentials,
             client_info=client_info,
+            client_options=client_options,
             _http=_http,
             _use_grpc=_use_grpc,
         )
@@ -182,17 +184,20 @@ class TestClient(unittest.TestCase):
 
     def test_constructor_w_explicit_inputs(self):
         from google.cloud.datastore.client import _DATASTORE_BASE_URL
+        from google.api_core.client_options import ClientOptions
 
         other = "other"
         namespace = "namespace"
         creds = _make_credentials()
         client_info = mock.Mock()
+        client_options = ClientOptions(api_endpoint="foo-datastore.googleapis.com")
         http = object()
         client = self._make_one(
             project=other,
             namespace=namespace,
             credentials=creds,
             client_info=client_info,
+            client_options=client_options,
             _http=http,
         )
         self.assertEqual(client.project, other)
@@ -202,7 +207,21 @@ class TestClient(unittest.TestCase):
         self.assertIs(client._http_internal, http)
         self.assertIsNone(client.current_batch)
         self.assertEqual(list(client._batch_stack), [])
-        self.assertEqual(client.base_url, _DATASTORE_BASE_URL)
+        self.assertEqual(client.base_url, "http://foo-datastore.googleapis.com")
+
+    def test_constructor_w_client_options_dictionary(self):
+        from google.cloud.datastore.client import _DATASTORE_BASE_URL
+        from google.api_core.client_options import ClientOptions
+
+        other = "other"
+        namespace = "namespace"
+
+        client = self._make_one(
+            project=other,
+            namespace=namespace,
+            client_options={"api_endpoint": "foo-datastore.googleapis.com"},
+        )
+        self.assertEqual(client.base_url, "http://foo-datastore.googleapis.com")
 
     def test_constructor_use_grpc_default(self):
         import google.cloud.datastore.client as MUT
