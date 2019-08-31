@@ -183,7 +183,6 @@ class TestClient(unittest.TestCase):
         _determine_default_project.assert_called_once_with(None)
 
     def test_constructor_w_explicit_inputs(self):
-        from google.cloud.datastore.client import _DATASTORE_BASE_URL
         from google.api_core.client_options import ClientOptions
 
         other = "other"
@@ -209,10 +208,19 @@ class TestClient(unittest.TestCase):
         self.assertEqual(list(client._batch_stack), [])
         self.assertEqual(client.base_url, "http://foo-datastore.googleapis.com")
 
-    def test_constructor_w_client_options_dictionary(self):
-        from google.cloud.datastore.client import _DATASTORE_BASE_URL
+    def test_constructor_w_empty_client_options(self):
         from google.api_core.client_options import ClientOptions
+        from google.cloud.datastore.client import _DATASTORE_BASE_URL
 
+        other = "other"
+        namespace = "namespace"
+
+        client = self._make_one(
+            project=other, namespace=namespace, client_options=ClientOptions()
+        )
+        self.assertEqual(client.base_url, _DATASTORE_BASE_URL)
+
+    def test_constructor_w_client_options_dictionary(self):
         other = "other"
         namespace = "namespace"
 

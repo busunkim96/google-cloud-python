@@ -246,6 +246,8 @@ class Client(ClientWithProject):
         else:
             self._use_grpc = _use_grpc
 
+        self._base_url = _DATASTORE_BASE_URL
+
         try:
             host = os.environ[GCD_HOST]
             self._base_url = "http://" + host
@@ -258,8 +260,7 @@ class Client(ClientWithProject):
                 if client_options.api_endpoint:
                     api_endpoint = client_options.api_endpoint
                     self._base_url = "http://" + api_endpoint
-            else:
-                self._base_url = _DATASTORE_BASE_URL
+                    return
 
     @staticmethod
     def _determine_default(project):
@@ -275,7 +276,8 @@ class Client(ClientWithProject):
     def base_url(self, value):
         """DEPRECATED. Setter for API base URL."""
         warnings.warn(
-            "The `base_url` setter is deprecated; use " "`client_options.api_endpoint` instead.",
+            "The `base_url` setter is deprecated; use "
+            "`client_options.api_endpoint` instead.",
             PendingDeprecationWarning,
             stacklevel=2,
         )
