@@ -15,29 +15,27 @@
 # limitations under the License.
 #
 
-from .services.text_to_speech import TextToSpeechClient
-from .types.cloud_tts import AudioConfig
-from .types.cloud_tts import AudioEncoding
-from .types.cloud_tts import ListVoicesRequest
-from .types.cloud_tts import ListVoicesResponse
-from .types.cloud_tts import SsmlVoiceGender
-from .types.cloud_tts import SynthesisInput
-from .types.cloud_tts import SynthesizeSpeechRequest
-from .types.cloud_tts import SynthesizeSpeechResponse
-from .types.cloud_tts import Voice
-from .types.cloud_tts import VoiceSelectionParams
+from google.cloud.texttospeech_v1.services.text_to_speech.client import (
+    TextToSpeechClient,
+)
+from google.cloud.texttospeech_v1.types.cloud_tts import AudioConfig
+from google.cloud.texttospeech_v1.types.cloud_tts import ListVoicesRequest
+from google.cloud.texttospeech_v1.types.cloud_tts import ListVoicesResponse
+from google.cloud.texttospeech_v1.types.cloud_tts import SynthesisInput
+from google.cloud.texttospeech_v1.types.cloud_tts import SynthesizeSpeechRequest
+from google.cloud.texttospeech_v1.types.cloud_tts import SynthesizeSpeechResponse
+from google.cloud.texttospeech_v1.types.cloud_tts import Voice
+from google.cloud.texttospeech_v1.types.cloud_tts import VoiceSelectionParams
 
 
 __all__ = (
+    "TextToSpeechClient",
     "AudioConfig",
-    "AudioEncoding",
     "ListVoicesRequest",
     "ListVoicesResponse",
-    "SsmlVoiceGender",
     "SynthesisInput",
     "SynthesizeSpeechRequest",
     "SynthesizeSpeechResponse",
     "Voice",
     "VoiceSelectionParams",
-    "TextToSpeechClient",
 )
