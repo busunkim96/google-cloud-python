@@ -24,6 +24,7 @@ import pytest
 from google import auth
 from google.api_core import client_options
 from google.auth import credentials
+from google.cloud.texttospeech_v1 import enums
 from google.cloud.texttospeech_v1.services.text_to_speech import TextToSpeechClient
 from google.cloud.texttospeech_v1.services.text_to_speech import transports
 from google.cloud.texttospeech_v1.types import cloud_tts
@@ -278,3 +279,12 @@ def test_text_to_speech_grpc_transport_channel():
     channel = grpc.insecure_channel("http://localhost/")
     transport = transports.TextToSpeechGrpcTransport(channel=channel)
     assert transport.grpc_channel is channel
+
+
+def test_enum_path():
+    assert enums.SsmlVoiceGender == cloud_tts.SsmlVoiceGender
+
+
+def test_enum_path():
+    assert enums.SsmlVoiceGender == cloud_tts.SsmlVoiceGender
+    assert enums.AudioEncoding == cloud_tts.AudioEncoding

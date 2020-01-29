@@ -1,22 +1,6 @@
-.. include:: README.rst
-
-Api Reference
+API Reference
 -------------
 .. toctree::
     :maxdepth: 2
-
-    api
-    gapic/v1/api
-    gapic/v1/types
-    gapic/v1beta1/api
-    gapic/v1beta1/types
-
-Changelog
----------
-
-For a list of all ``google-cloud-texttospeech`` releases.
-
-.. toctree::
-    :maxdepth: 2
-
-    changelog
+    texttospeech_v1/services
+    texttospeech_v1/types
